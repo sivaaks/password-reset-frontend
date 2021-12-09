@@ -1,5 +1,5 @@
 import {Container,Row,Button} from 'react-bootstrap';
-import { useHistory } from 'react-router';
+import { Redirect, useHistory } from 'react-router';
 
 
 export default function Home(){
@@ -8,9 +8,10 @@ export default function Home(){
 
     return (
         <Container>
+
             <Row>
             <h1>Home</h1>
-            
+            <Redirect to="/login"></Redirect>
             </Row>
             <Button onClick={()=>history.push('/login')}>Login to continue</Button>
             <br/>
