@@ -3,6 +3,7 @@ import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import { API_RESET_PASSWORD } from './Utils';
+import { ToastContainer,toast } from 'react-toastify';
 
 
 export default function ResetPassword(props){
@@ -27,8 +28,9 @@ export default function ResetPassword(props){
         }).catch(function(err){
                 setLoading(false);
                 console.log(err.response);
+                toast.error(err.response.data);
                 if(err.response.data.message) {
-                   
+                   toast.error(err.response.data.message);
                 }
         })
 
@@ -37,6 +39,7 @@ export default function ResetPassword(props){
     return(
 
         <Container fluid="md">
+        <ToastContainer/>
         <Row>
             <Col md={{span:6,offset:3}}>
                 <h1>Update password</h1>

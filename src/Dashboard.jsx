@@ -3,9 +3,11 @@ import {Container, Button,Form,Row,Modal,Table,Card,Spinner } from 'react-bootst
 import { ToastContainer,toast } from 'react-toastify';
 import {API_URL,SITE_ADDRESS} from './Utils';
 import axios from 'axios';
+import { useHistory } from 'react-router';
 
 export default function Dashboard(){
 
+    const history=useHistory();
     const authToken=localStorage.getItem('auth-token');
     const [urls,setUrls]=useState([]);
     const [newUrl,setNewUrl]= useState(false);
@@ -35,6 +37,7 @@ export default function Dashboard(){
         }
 
         const getURLS=async()=>{
+            setLoading(true);
             await axios.get(API_URL,
                 {headers:{auth:authToken}}).then(function(res){
                 if(res.data) if(res.status===200) {
@@ -58,6 +61,11 @@ export default function Dashboard(){
                 });
         }
 
+        const logout=()=>{
+            localStorage.setItem("auth-token","");
+            history.push('/login');
+        }
+
         useEffect(()=>{
            
             async function getURLSFirst() {
@@ -79,7 +87,7 @@ export default function Dashboard(){
     return (
         <Container style={{padding:'10px'}}>
             <ToastContainer/>
-            <h2>Dashboard</h2>
+            <h2>Dashboard</h2> 
             <Row style={{padding:'10px'}}>
                 <Card style={{ width: '18rem' }}>
                     <Card.Body>
@@ -118,9 +126,19 @@ export default function Dashboard(){
                         </Form>
             </Modal.Body>
         </Modal>
-        <h4>URL's generated</h4>
+        <h4>URL's shortned or generated</h4>
         <Row style={{padding:'10px'}}>
-        <Button style={{width:'10rem'}} onClick={handleShow}>Add new</Button>
+        <Button style={{width:'10rem',marginRight:'10px'}} onClick={handleShow}>Add new</Button>
+        <Button style={{width:'10rem',marginRight:'10px'}} onClick={()=>getURLS()}>
+            {loading?<Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+                />:<></>}
+            Refresh</Button>
+         <Button variant="danger" style={{width:'10rem',marginRight:'10px'}} onClick={()=>logout()}>Logout</Button>
         </Row>
         <Table striped bordered hover>
             <thead>
@@ -136,7 +154,7 @@ export default function Dashboard(){
                     return(
                         <tr key={index}>
                             <th>{url.original}</th>
-                            <th><a href={`${SITE_ADDRESS}/${url.shortend}`} rel="noreferrer" target="_blank">{`${SITE_ADDRESS}/${url.shortend}`}</a></th>
+                            <th><a href={`${SITE_ADDRESS}/${url.shortend}`} rel="noreferrer" target="_blank">{`reus.ml/${url.shortend}`}</a></th>
                             <th>{url.hits}</th>
                             <th><Button onClick={()=>deleteURL(url._id)} variant="danger">Delete</Button></th>
                         </tr>

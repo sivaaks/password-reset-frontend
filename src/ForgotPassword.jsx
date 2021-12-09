@@ -3,6 +3,7 @@ import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import { API_FORGOT_PASSWORD } from './Utils';
+import { ToastContainer,toast } from 'react-toastify';
 
 export default function ForgotPassword(){
 
@@ -25,8 +26,9 @@ export default function ForgotPassword(){
         }).catch(function(err){
                 setLoading(false);
                 console.log(err.response);
+                toast.error(err.response.data);
                 if(err.response.data.message) {
-                   
+                   toast.error(err.response.data.message);
                 }
         })
 
@@ -35,6 +37,7 @@ export default function ForgotPassword(){
     return(
 
         <Container fluid="md">
+        <ToastContainer/>
         <Row>
             <Col md={{span:6,offset:3}}>
                 <h1>Forgot password</h1>

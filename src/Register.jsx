@@ -3,6 +3,7 @@ import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import { API_REGISTER } from './Utils';
+import { ToastContainer,toast } from 'react-toastify';
 
 export default function Register(){
 
@@ -23,13 +24,20 @@ export default function Register(){
                 setUserDetails(userFields)
                 history.push('/email');
             } }).catch(function(err){
-            setLoading(false);
+                setLoading(false);
+                console.log(err.response);
+                toast.error(err.response.data);
+                if(err.response.data.message) {
+                   toast.error(err.response.data.message);
+                }
+
             });
         }
     
     return(
 
         <Container fluid="md">
+        <ToastContainer/>
         <Row>
             <Col md={{span:6,offset:3}}>
                 <h1>Register</h1>

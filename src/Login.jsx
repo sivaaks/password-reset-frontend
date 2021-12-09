@@ -65,7 +65,12 @@ export default function Login(){
                      Submit
                     </Button>
                 </Form>
+                <br/>
+                <h6>Demo credentials:</h6>
+                <p>Email: demo@example.com <br/>
+                Password: demo123</p>
             </Col>
+            
         </Row>
         </Container>
 
