@@ -8,7 +8,7 @@ import { ToastContainer,toast } from 'react-toastify';
 export default function Register(){
 
     const history=useHistory();
-    const userFields={email:'',fname:'',lname:'',password:''};
+    const userFields={email:'',password:''};
     const [userDetails,setUserDetails]= useState(userFields);
     const [loading,setLoading]=useState(false);
 
