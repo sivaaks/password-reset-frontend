@@ -22,7 +22,7 @@ export default function Register(){
             if(res.data) if(res.status===200) {
                 setLoading(false); 
                 setUserDetails(userFields)
-                history.push('/email');
+                history.push('/login');
             } }).catch(function(err){
                 setLoading(false);
                 console.log(err.response);

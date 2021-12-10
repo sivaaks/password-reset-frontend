@@ -10,16 +10,22 @@ export default function ResetPassword(props){
 
     const token=props.match.params.token;
     const history=useHistory();
-    const [password,setPassword]= useState('');
+    const [password,setPassword]= useState({password:'',confirmPassword:''});
     const [loading,setLoading]=useState(false);
 
-    const handleChange=({target:{name,value}})=>setPassword(value);
+    const handleChange=({target:{name,value}})=>setPassword({...password,[name]:value});
 
     const resetPassword=async(e)=>{
         e.preventDefault();
+        if (password.password!==password.confirmPassword) {
+            toast.error('Password and confirm password do not match');
+        } else if (password.password==='' || password.confirmPassword==='') {
+            toast.error('Enter password and confirm password');
+        }
+        else {
         setLoading(true);
         await axios.post(`${API_RESET_PASSWORD}/${token}`,{
-           password,
+           password:password.password,
         }).then(function(res){
             if(res.data) if(res.status===200) {
                 setLoading(false);
@@ -33,6 +39,8 @@ export default function ResetPassword(props){
                    toast.error(err.response.data.message);
                 }
         })
+        
+        }
 
     }
     
