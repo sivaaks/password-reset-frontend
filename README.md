@@ -1,1 +1,1 @@
-# URL shortner frontend deployed URL : https://reus.ml
+# Password reset frontend deployed URL : https://siva-password-reset.netlify.app/
