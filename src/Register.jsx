@@ -42,14 +42,6 @@ export default function Register(){
             <Col md={{span:6,offset:3}}>
                 <h1>Register</h1>
                 <Form>
-                    <Form.Group className="mb-3" controlId="text">
-                        <Form.Label>First name</Form.Label>
-                        <Form.Control onChange={handleChange} name="fname" type="text" placeholder="Enter first name" />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="text">
-                        <Form.Label>Last name</Form.Label>
-                        <Form.Control onChange={handleChange} name="lname" type="text" placeholder="Enter last name" />
-                    </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control onChange={handleChange} name="email" type="email" placeholder="Enter email" />
@@ -69,8 +61,12 @@ export default function Register(){
                         />:<></>}
                         Register
                     </Button>
-
+                    <Button variant="link" onClick={()=>{
+                        history.push('/login')
+                    }}>Already have an account? Login here</Button>         
                 </Form>
+                <h6>Demo credentials:</h6>
+                <p>Use your email address to register, it is verified by default</p>
             </Col>
         </Row>
         </Container>

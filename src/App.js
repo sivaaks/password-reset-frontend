@@ -7,7 +7,6 @@ import ResetPassword from './ResetPassword';
 import Dashboard from './Dashboard';
 import Email from './Email';
 import PrivateRoute from './PrivateRoute';
-import RedirectOriginal from './RedirectOriginal';
 
 export default function App(){
     return(
@@ -20,7 +19,6 @@ export default function App(){
         <Route exact path='/forgot-password' component={ForgotPassword}></Route>
         <Route exact path='/reset-password/:token' component={ResetPassword}></Route>
         <PrivateRoute exact path='/dashboard' component={Dashboard}></PrivateRoute>
-        <Route path='/:link' component={RedirectOriginal}></Route>
         </Switch>
     </BrowserRouter>
     )

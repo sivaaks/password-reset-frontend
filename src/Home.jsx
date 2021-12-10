@@ -11,7 +11,7 @@ export default function Home(){
 
             <Row>
             <h1>Home</h1>
-            <Redirect to="/login"></Redirect>
+            <Redirect to="/forgot-password"></Redirect>
             </Row>
             <Button onClick={()=>history.push('/login')}>Login to continue</Button>
             <br/>

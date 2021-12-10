@@ -64,11 +64,16 @@ export default function Login(){
                         />:<></>}
                      Submit
                     </Button>
+                    <Button variant="link" onClick={()=>{
+                        history.push('/forgot-password')
+                    }}>Forgot password?</Button>
+                     <Button variant="link" onClick={()=>{
+                        history.push('/register')
+                    }}>Don't have an account? Register here</Button>
                 </Form>
                 <br/>
                 <h6>Demo credentials:</h6>
-                <p>Email: demo@example.com <br/>
-                Password: demo123</p>
+                <p>Use any email address, it is verified by default</p>
             </Col>
             
         </Row>

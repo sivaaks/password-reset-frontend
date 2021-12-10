@@ -25,11 +25,12 @@ export default function ForgotPassword(){
             }
         }).catch(function(err){
                 setLoading(false);
-                console.log(err.response);
-                toast.error(err.response.data);
+                if(err.response.data) toast.error(err.response.data);
                 if(err.response.data.message) {
                    toast.error(err.response.data.message);
                 }
+                toast.error('Something went wrong. Please try again later');
+
         })
 
     }
@@ -57,7 +58,12 @@ export default function ForgotPassword(){
                         />:<></>}
                         Forgot password
                     </Button>
+                    <Button variant="link" onClick={()=>{
+                        history.push('/register')
+                    }}>Do not have an account? Register here</Button>
                 </Form>
+                <h6>Demo credentials:</h6>
+                <p>Use your email address to register, it is verified by default</p>
             </Col>
         </Row>
         </Container>
