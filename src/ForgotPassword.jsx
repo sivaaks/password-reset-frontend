@@ -29,7 +29,6 @@ export default function ForgotPassword(){
                 if(err.response.data.message) {
                    toast.error(err.response.data.message);
                 }
-                toast.error('Something went wrong. Please try again later');
 
         })
 
